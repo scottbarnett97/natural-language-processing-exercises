@@ -32,7 +32,8 @@ def get_articles_texts(urls):
 
     return articles
 
-******************** Inshorts *************************
+###################### Inshorts ########################
+
 def get_news_articles():
     '''
     this function scrapes the inshorts websight for the title content and catagory of the articles in the perscribed areas
