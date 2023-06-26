@@ -75,3 +75,16 @@ def wrangle_codeup(urls):
     lemmatizer = WordNetLemmatizer()
     codeup_df['lemmatized'] = codeup_df['clean'].apply(tokenize).apply(lambda x: [lemmatizer.lemmatize(word) for word in x]).apply(lambda x: ' '.join(x))
     return codeup_df
+
+
+def wrangle_news():
+    news_df = acquire.get_news_articles()
+    news_df = pd.DataFrame(news_df)
+    news_df = news_df.rename(columns={'content': 'original'})
+    news_df['clean'] = news_df['original'].apply(basic_clean).apply(tokenize).apply(lambda x: ' '.join(x))
+    stemmer = PorterStemmer()
+    news_df['stemmed'] = news_df['clean'].apply(tokenize).apply(lambda x: [stemmer.stem(word) for word in x]).apply(lambda x: ' '.join(x))
+    lemmatizer = WordNetLemmatizer()
+    news_df['lemmatized'] = news_df['clean'].apply(tokenize).apply(lambda x: [lemmatizer.lemmatize(word) for word in x]).apply(lambda x: ' '.join(x))
+    return news_df
+
